@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1071407242309",
+    "firebase_url": "https://labsec-42caa.firebaseio.com",
+    "project_id": "labsec-42caa",
+    "storage_bucket": "labsec-42caa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071407242309:android:1ef451fc4b7ed60e46572c",
+        "android_client_info": {
+          "package_name": "amst.g1.labsec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071407242309-cqd4slounno90qrd2ti40o8tcv45741t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "amst.g1.labsec",
+            "certificate_hash": "dba313c57d2d943e23a35213e5d955e161745738"
+          }
+        },
+        {
+          "client_id": "1071407242309-ua7s6jgr97767k219ep0h8es16l8rhce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPLz2PkKaFSYl_LF6KaC5O46bSsRudV0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071407242309-ua7s6jgr97767k219ep0h8es16l8rhce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
