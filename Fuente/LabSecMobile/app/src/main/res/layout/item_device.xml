@@ -14,8 +14,8 @@
             android:id="@+id/ivItemDeviceState"
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:contentDescription="@string/state_image"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,9 +29,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
-            android:text="Nombre del dispositivo"
             app:layout_constraintStart_toEndOf="@+id/ivItemDeviceState"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,9 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Marca"
             app:layout_constraintStart_toEndOf="@+id/ivItemDeviceState"
             app:layout_constraintTop_toBottomOf="@+id/tvItemDeviceName" />
 
@@ -51,10 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Modelo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivItemDeviceState"
             app:layout_constraintTop_toBottomOf="@+id/tvItemDeviceBrand" />

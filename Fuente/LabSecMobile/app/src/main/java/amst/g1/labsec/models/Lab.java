@@ -1,5 +1,7 @@
 package amst.g1.labsec.models;
 
+import androidx.annotation.NonNull;
+
 public class Lab {
 
     private String id;
@@ -66,6 +68,7 @@ public class Lab {
         return validName && validDesc && validLoc && validInCharge;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Lab{" +

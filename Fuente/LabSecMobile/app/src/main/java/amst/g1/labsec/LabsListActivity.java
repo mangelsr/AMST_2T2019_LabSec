@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -19,6 +18,8 @@ import com.firebase.ui.database.SnapshotParser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.util.Objects;
 
 import amst.g1.labsec.databinding.ActivityLabsListBinding;
 import amst.g1.labsec.models.Lab;
@@ -29,7 +30,6 @@ public class LabsListActivity extends AppCompatActivity {
     private ActivityLabsListBinding binding;
 
     private FirebaseRecyclerAdapter adapter;
-    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class LabsListActivity extends AppCompatActivity {
             }
         });
 
-        layoutManager = new LinearLayoutManager(getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 
         binding.rvLabList.setLayoutManager(layoutManager);
 
@@ -62,11 +62,12 @@ public class LabsListActivity extends AppCompatActivity {
                             @NonNull
                             @Override
                             public Lab parseSnapshot(@NonNull DataSnapshot snapshot) {
-                                String id = snapshot.child("id").getValue().toString();
-                                String name = snapshot.child("name").getValue().toString();
-                                String description = snapshot.child("description").getValue().toString();
-                                String location = snapshot.child("location").getValue().toString();
-                                String inCharge = snapshot.child("inCharge").getValue().toString();
+                                String id = Objects.requireNonNull(snapshot.child("id").getValue()).toString();
+                                String name = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
+                                String description = Objects.requireNonNull(snapshot.child("description").getValue())
+                                        .toString();
+                                String location = Objects.requireNonNull(snapshot.child("location").getValue()).toString();
+                                String inCharge = Objects.requireNonNull(snapshot.child("inCharge").getValue()).toString();
                                 Lab lab = new Lab(id, name, description, location, inCharge);
                                 Log.v("TEST", lab.toString());
                                 return lab;
@@ -101,14 +102,17 @@ public class LabsListActivity extends AppCompatActivity {
 
 
             @Override
-            protected void onBindViewHolder(@NonNull LabViewHolder holder, final int position, @NonNull Lab model) {
+            protected void onBindViewHolder(@NonNull LabViewHolder holder, final int position,
+                                            @NonNull final Lab model) {
                 holder.tvName.setText(model.getName());
                 holder.tvLocation.setText(model.getLocation());
                 holder.tvInCharge.setText(model.getInCharge());
                 holder.cvRoot.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), DeviceListActivity.class);
+                        Intent intent = new Intent(getApplicationContext(),
+                                DeviceListActivity.class);
+                        intent.putExtra(DeviceListActivity.LABID, model.getId());
                         startActivity(intent);
                     }
                 });

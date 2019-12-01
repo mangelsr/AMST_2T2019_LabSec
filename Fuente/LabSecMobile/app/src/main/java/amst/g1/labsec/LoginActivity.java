@@ -15,6 +15,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 import amst.g1.labsec.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -51,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login() {
-        String mail = binding.etLoginEmail.getText().toString();
-        String password = binding.etLoginPassword.getText().toString();
+        String mail = Objects.requireNonNull(binding.etLoginEmail.getText()).toString();
+        String password = Objects.requireNonNull(binding.etLoginPassword.getText()).toString();
         mAuth.signInWithEmailAndPassword(mail, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

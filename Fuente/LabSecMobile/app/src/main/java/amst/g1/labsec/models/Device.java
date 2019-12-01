@@ -1,23 +1,44 @@
 package amst.g1.labsec.models;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 public class Device {
 
+    private String id;
     private String name;
     private String brand;
     private String model;
     private String borrower;
+    private String state;
     private Date returnDate;
 
-    public Device() {}
+    public Device() {
+        this.state = "Available";
+    }
 
-    public Device(String name, String brand, String model, String borrower, Date returnDate) {
+    public Device(String id, String name, String brand, String model) {
+        this.id = id;
         this.name = name;
         this.brand = brand;
         this.model = model;
-        this.borrower = borrower;
-        this.returnDate = returnDate;
+    }
+
+    public Device(String id, String name, String brand, String model, String state) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.model = model;
+        this.state = state;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -60,13 +81,31 @@ public class Device {
         this.returnDate = returnDate;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public boolean isValid() {
+        boolean validName = name != null && !name.equals("");
+        boolean validBrand = brand != null && !brand.equals("");
+        boolean validModel = model != null && !model.equals("");
+        return validName && validBrand && validModel;
+    }
+
+    @NonNull
     @Override
     public String toString() {
         return "Device{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", borrower='" + borrower + '\'' +
+                ", state='" + state + '\'' +
                 ", returnDate=" + returnDate +
                 '}';
     }

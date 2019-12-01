@@ -30,7 +30,7 @@
                     android:id="@+id/etLoginEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,7 +42,7 @@
                     android:id="@+id/etLoginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,7 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"

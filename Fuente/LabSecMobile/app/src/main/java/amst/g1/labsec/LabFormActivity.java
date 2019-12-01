@@ -18,13 +18,12 @@ import amst.g1.labsec.models.Lab;
 
 public class LabFormActivity extends AppCompatActivity {
 
-    private Lab lab = new Lab();
-    private ActivityLabFormBinding binding;
+    private final Lab lab = new Lab();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_lab_form);
+        ActivityLabFormBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_lab_form);
         binding.setLab(lab);
         binding.fabLabFormOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,13 +31,15 @@ public class LabFormActivity extends AppCompatActivity {
                 if (lab.isValid())
                     createLab();
                 else
-                    Toast.makeText(getApplicationContext(), "Invalid data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid data",
+                            Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void createLab() {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("labs").push();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("labs").push();
         Map<String, Object> map = new HashMap<>();
         map.put("id", databaseReference.getKey());
         map.put("name", lab.getName());

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">LabSec</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="brand">Brand</string>
+    <string name="location">Location</string>
+    <string name="in_charge">In charge</string>
+    <string name="model">Model</string>
+    <string name="no_devices">No devices were found</string>
+    <string name="no_labs">No labs were found</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="state_image">State image</string>
 </resources>

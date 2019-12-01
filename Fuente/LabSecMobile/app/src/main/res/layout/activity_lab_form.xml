@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={lab.name}"
-                    android:hint="Name" />
+                    android:hint="@string/name" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={lab.description}"
-                    android:hint="Description" />
+                    android:hint="@string/description" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={lab.location}"
-                    android:hint="Location" />
+                    android:hint="@string/location" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@={lab.inCharge}"
-                    android:hint="In Charge" />
+                    android:hint="@string/in_charge" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -82,7 +82,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:focusable="true"
             android:clickable="true"

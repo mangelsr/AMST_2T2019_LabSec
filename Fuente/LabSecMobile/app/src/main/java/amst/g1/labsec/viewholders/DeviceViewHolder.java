@@ -11,10 +11,10 @@ import amst.g1.labsec.R;
 
 public class DeviceViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView tvName;
-    public TextView tvBrand;
-    public TextView tvModel;
-    public ImageView ivState;
+    public final TextView tvName;
+    public final TextView tvBrand;
+    public final TextView tvModel;
+    public final ImageView ivState;
 
     public DeviceViewHolder(@NonNull View itemView) {
         super(itemView);

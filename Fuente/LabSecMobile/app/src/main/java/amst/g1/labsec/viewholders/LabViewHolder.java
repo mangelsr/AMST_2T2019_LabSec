@@ -11,10 +11,10 @@ import amst.g1.labsec.R;
 
 public class LabViewHolder extends RecyclerView.ViewHolder {
 
-    public CardView cvRoot;
-    public TextView tvName;
-    public TextView tvLocation;
-    public TextView tvInCharge;
+    public final CardView cvRoot;
+    public final TextView tvName;
+    public final TextView tvLocation;
+    public final TextView tvInCharge;
 
 
     public LabViewHolder(@NonNull View itemView) {
