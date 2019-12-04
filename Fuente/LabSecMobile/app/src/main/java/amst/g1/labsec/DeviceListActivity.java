@@ -124,13 +124,13 @@ public class DeviceListActivity extends AppCompatActivity {
                 holder.tvBrand.setText(model.getBrand());
                 holder.tvModel.setText(model.getModel());
                 switch (model.getState()) {
-                    case "available":
+                    case "Available":
                         holder.ivState.setImageResource(R.drawable.ic_check_green);
                         break;
-                    case "borrowed":
+                    case "Borrowed":
                         holder.ivState.setImageResource(R.drawable.ic_access_time_yellow);
                         break;
-                    case "moved":
+                    case "Moved":
                         holder.ivState.setImageResource(R.drawable.ic_error_outline_red);
                         break;
                 }

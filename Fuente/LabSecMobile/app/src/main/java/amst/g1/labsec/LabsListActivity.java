@@ -2,6 +2,7 @@ package amst.g1.labsec;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.SupportMenuInflater;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -9,15 +10,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.Objects;
 
@@ -50,6 +60,38 @@ public class LabsListActivity extends AppCompatActivity {
         fetch();
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        SupportMenuInflater inflater = (SupportMenuInflater) getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menuItemExit) {
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                Log.w("Instance", "getInstanceId failed",
+                                        task.getException());
+                                return;
+                            }
+                            String token = Objects.requireNonNull(task.getResult()).getToken();
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("tokens").child(token).removeValue();
+                            FirebaseAuth.getInstance().signOut();
+                            Intent intent = new Intent(getApplicationContext(),
+                                    LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void fetch() {
         Query query = FirebaseDatabase.getInstance()
