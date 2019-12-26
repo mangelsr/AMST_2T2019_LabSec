@@ -12,21 +12,23 @@ exports.changeStatus = functions.https.onRequest(async (req, res) => {
         if (!body.labId && !body.devId)
             return res.status(400).send('Bad request');
 
-        var ref = admin.database()
-            .ref(`/labs/${body.labId}/devices/${body.devId}`);
+        var ref = admin.database().ref(`/labs/${body.labId}/devices/${body.devId}`);
         let snapshot = await ref.once('value');
         if (snapshot.exists()) {
             switch (snapshot.child('state').val()) {
                 case 'Available':
                     await snapshot.child('state').ref.set('Moved');
-                    
+
+                    var labRef = admin.database().ref(`/labs/${body.labId}`);
+                    var labSnapshot = await labRef.once('value'); 
+
                     var tokensSnapshot = await admin.database()
                         .ref(`/tokens`).once('value');
                     var tokens = Object.keys(tokensSnapshot.val());
                     var payload = {
                         notification: {
                             title: 'Dispositivo movido',
-                            body: `${snapshot.child('name').val()} fue retirado sin permiso`
+                            body: `${snapshot.child('name').val()} del ${labSnapshot.child('name').val()} fue retirado sin permiso`
                         }
                     };
                     await admin.messaging().sendToDevice(tokens, payload);
